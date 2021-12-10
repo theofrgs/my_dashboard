@@ -1,0 +1,53 @@
+version: "3.3"
+
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dashboard_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./init_data:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - back-tier
+    restart: always
+
+  front:
+    image: front
+    container_name: client
+    build: client
+    ports:
+      - "3000:3000"
+    networks:
+      - front-tier
+    restart: always
+    environment:
+      - 0.0.0.0
+
+  back:
+    image: back
+    container_name: server
+    build: server
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+    networks:
+      - back-tier
+    restart: always
+    environment:
+      - 0.0.0.0
+
+volumes:
+  mariadb:
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge

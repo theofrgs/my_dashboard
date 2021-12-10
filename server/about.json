@@ -1,0 +1,64 @@
+{
+    " client ": {
+        " host ": ""
+    },
+    " server ": {
+        " current_time ": 1638734400,
+        " services ": [
+            {
+                " name ": " weather ",
+                " widgets ": [
+                    {
+                        " name ": " city_temperature ",
+                        " description ": " Display temperature for a city ",
+                        " params ": [
+                            {
+                                " name ": " city ",
+                                " type ": " string "
+                            }
+                        ]
+                    },
+                    {
+                        " name ": " city_temperature_forecast ",
+                        " description ": " Display temperature forecast 5 days for a city ",
+                        " params ": [
+                            {
+                                " name ": " city ",
+                                " type ": " string "
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                " name ": " exchange ",
+                " widgets ": [
+                    {
+                        " name ": " convertcurrency ",
+                        " description ": " Compare two differents currencies ",
+                        " params ": [
+                            {
+                                " name ": " currency ",
+                                " type ": " string "
+                            },
+                            {
+                                " name ": " currency ",
+                                " type ": " string "
+                            }
+                        ]
+                    },
+                    {
+                        " name ": " exchanges ",
+                        " description ": " Get the value of the currency compared to EUR ",
+                        " params ": [
+                            {
+                                " name ": " currency ",
+                                " type ": " string "
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

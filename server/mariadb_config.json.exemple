@@ -1,0 +1,6 @@
+{
+  "host": "mariadb",
+  "user": "user",
+  "password": "secret",
+  "database": "dashboard_db"
+}

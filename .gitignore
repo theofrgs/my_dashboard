@@ -1,0 +1,11 @@
+# Directory
+*node_modules
+data
+client/build
+.idea
+
+# File
+client/src/auth_config.json
+server/mariadb_config.json
+server/api_config.json
+.env
