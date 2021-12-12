@@ -32,7 +32,7 @@ export default function ConverterCurrency() {
                     variant="outlined"
                     onChange={(e) => { setCurrencyDesired(e.target.value.toUpperCase()) }} />
                 <Button
-                    onClick={() => getConvertCurrency(exchangesConnected, currencyToConvert, setExchangesSession, setExchangesConnected)}
+                    onClick={() => getConvertCurrency(setExchangesSession, setExchangesConnected)}
                     variant="outlined">
                     Convert / Update
                 </Button>

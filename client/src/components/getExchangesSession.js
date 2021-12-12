@@ -1,15 +1,10 @@
-import Axios from 'axios';
-
 function getExchangesSession(setEchanges, setExchangesConnected) {
+    const exchangesSession = JSON.parse(localStorage.getItem('exchanges'));
 
-    // Axios.defaults.withCredentials = true;
-
-    Axios.get("http://localhost:8080/connectApi/exchanges/session").then((response) => {
-        if (response && response.data.exchangesConnected === true) {
-            setEchanges(response.data.exchanges);
-            setExchangesConnected(true);
-        }
-    });
+    if (exchangesSession) {
+        setEchanges(exchangesSession);
+        setExchangesConnected(true);
+    }
 }
 
 export default getExchangesSession;

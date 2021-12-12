@@ -15,8 +15,8 @@ function getExchangesSession(setEchanges, setExchangesConnected) {
     exchanges(setEchanges, setExchangesConnected)
 }
 
-function getConvertCurrency(exchangesConnected, currencyToConvert, setEchanges, setExchangesConnected) {
-    convertCurrency(exchangesConnected, currencyToConvert, setEchanges, setExchangesConnected)
+function getConvertCurrency(setExchangesSession, setExchangesConnected) {
+    convertCurrency(setExchangesSession, setExchangesConnected)
 }
 
 export {

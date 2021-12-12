@@ -8,7 +8,10 @@ const connectExchanges = (setExchangesConnected, dateFrom) => {
     Axios.post("http://localhost:8080/connectApi/exchanges", {
         dateFrom: dateFromAPi
     }).then((response) => {
-        setExchangesConnected(true);
+        if (response.data) {
+            localStorage.setItem('exchanges', JSON.stringify(response.data));
+            setExchangesConnected(true);
+        }
     })
 };
 

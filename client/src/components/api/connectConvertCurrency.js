@@ -4,7 +4,10 @@ const connectConvertCurrency = (currencyToConvert, setExchangesConnected) => {
     Axios.post("http://localhost:8080/connectApi/converterCurrency", {
         currencyToConvert: currencyToConvert
     }).then((response) => {
-        setExchangesConnected(true);
+        if (response.data) {
+            localStorage.setItem('convertCurrency', JSON.stringify(response.data));
+            setExchangesConnected(true);
+        }
     })
 };
 
