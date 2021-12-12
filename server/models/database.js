@@ -28,7 +28,6 @@ function login(req, res) {
 }
 
 function logout(req, res) {
-    localStorage.clear();
     res.send("logout");
 }
 
