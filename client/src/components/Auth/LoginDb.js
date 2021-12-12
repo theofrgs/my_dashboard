@@ -6,8 +6,11 @@ const LoginDb = (name, password, setStatusLog) => {
             username: name,
             userpassword: password,
         }).then((response) => {
-            if (response.data)
-                setStatusLog(response.data);
+            if (response.data.msg) {
+                setStatusLog(response.data.msg);
+                if (response.data.msg === "User logged")
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+            }
         })
     } else {
         if (name === "")

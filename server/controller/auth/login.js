@@ -9,12 +9,7 @@ function google(req, res) {
     gl.login(req, res);
 }
 
-function session(req, res) {
-    db.sessionlogin(req, res);
-}
-
 module.exports = {
     database: database,
     google: google,
-    session: session
 }

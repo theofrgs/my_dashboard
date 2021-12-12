@@ -15,30 +15,20 @@ function login(req, res) {
             if (results.length > 0) {
                 bcrypt.compare(userpassword, results[0].userpassword, (err, response) => {
                     if (response) {
-                        req.session.user = results;
-                        res.send("User logged");
+                        res.send({msg: "User logged", user: results});
                     } else {
-                        res.send("Wrong username or password !");
+                        res.send({msg: "Wrong username or password !"});
                     }
                 });
             } else {
-                res.send("Wrong username or password !");
+                res.send({msg: "Wrong username or password !"});
             }
         }
     );
 }
 
 function logout(req, res) {
-    req.session.user = null;
     res.send("logout");
-}
-
-function sessionlogin(req, res) {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user})
-    } else {
-        res.send({loggedIn: false})
-    }
 }
 
 function insertUserInto(username, userpassword) {
@@ -81,5 +71,4 @@ module.exports = {
     register: register,
     login: login,
     logout: logout,
-    sessionlogin: sessionlogin
 }
