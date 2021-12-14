@@ -3,7 +3,7 @@ import Alert from '@mui/material/Alert';
 function convertCurrency(exchangesSession, currencyToConvert, currencyDesired) {
     if (!exchangesSession.data)
         return (null);
-    if (exchangesSession.data[currencyToConvert] !== undefined && exchangesSession.data[currencyDesired] !== undefined && currencyToConvert !== currencyDesired) {
+    if (exchangesSession.data[currencyDesired] !== undefined && currencyToConvert !== currencyDesired) {
         var output = `${currencyToConvert} -> ${currencyDesired} = ${exchangesSession.data[currencyDesired]}`
         return (
             <h3>
