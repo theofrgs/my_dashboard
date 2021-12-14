@@ -19,7 +19,6 @@ function login(req, res) {
 }
 
 function logout(req, res) {
-    req.session.user = null;
     res.send("logout");
 }
 
