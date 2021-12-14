@@ -8,6 +8,7 @@ import DashbpardStyle from "../../assets/jss/material-kit-react/components/dashb
 import Header from "../../components/Dashboard/Header";
 import "../../styles.css";
 import StateRoute from "../../components/Auth/StateRoute.js";
+import Logout from "../../components/Auth/Logout.js";
 
 //VIEW
 export default function DashboardPage(req, res) {
@@ -16,7 +17,7 @@ export default function DashboardPage(req, res) {
     const [darkMode, setDarkMode] = useState(false);
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState("");
-    const [back, setBack] = useState(false);
+    const [status, setStatus] = useState("");
 
     const theme = createTheme({
         palette: {
@@ -41,11 +42,11 @@ export default function DashboardPage(req, res) {
                                 Not logged in go back to the login Page
                             </h3>
                             <Button variant="contained" onClick={() => {
-                                setBack(true)
+                                Logout(setStatus);
                             }}>
                                 Back to login Page
                             </Button>
-                            {StateRoute(back, true, "/login")}
+                            {StateRoute(status, "logout", "/login")}
                         </div>
                     </center>
                 </div>

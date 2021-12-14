@@ -1,9 +1,10 @@
 import { useEffect } from "react";
+import Cookies from 'js-cookie'
 
 function UserEffect(setStatusLog) {
 
     useEffect(() => {
-        if (localStorage.getItem('user') !== null)
+        if (Cookies.get('user') !== undefined)
             setStatusLog("User logged");
     }, [setStatusLog]);
 }

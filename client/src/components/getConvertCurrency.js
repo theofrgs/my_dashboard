@@ -1,10 +1,13 @@
-function getConvertCurrency(setExchangesSession, setExchangesConnected) {
-    const convertCurrency = JSON.parse(localStorage.getItem('convertCurrency'));
+import Cookies from 'js-cookie'
 
-    if (convertCurrency) {
-        setExchangesSession(convertCurrency);
-        setExchangesConnected(true);
-    }
+function getConvertCurrency(setExchangesSession, setExchangesConnected) {
+
+    const cookierConvertCurrency = Cookies.get('convertCurrency');
+
+    if (!cookierConvertCurrency)
+        return
+    setExchangesSession(JSON.parse(cookierConvertCurrency));
+    setExchangesConnected(true);
 }
 
 export default getConvertCurrency;

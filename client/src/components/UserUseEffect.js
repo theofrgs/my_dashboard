@@ -1,10 +1,13 @@
 import { useEffect } from "react";
+import Cookies from 'js-cookie'
 
 function UserUseEffect(setUser, setLogged) {
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user !== null) {
+        var user = Cookies.get('user');
+
+        if (user !== undefined) {
+            user = JSON.parse(user);
             if (user[0] !== undefined)
                 setUser(user[0]);
             else

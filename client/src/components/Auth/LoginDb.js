@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import Cookies from 'js-cookie'
 
 const LoginDb = (name, password, setStatusLog) => {
     if (name && password) {
@@ -8,8 +9,10 @@ const LoginDb = (name, password, setStatusLog) => {
         }).then((response) => {
             if (response.data.msg) {
                 setStatusLog(response.data.msg);
-                if (response.data.msg === "User logged")
-                    localStorage.setItem('user', JSON.stringify(response.data.user));
+                if (response.data.msg === "User logged") {
+                    // localStorage.setItem('user', JSON.stringify(response.data.user));
+                    Cookies.set('user', JSON.stringify(response.data));
+                }
             }
         })
     } else {

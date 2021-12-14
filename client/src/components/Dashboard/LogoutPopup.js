@@ -76,7 +76,7 @@ function DropdownMenu(user) {
                     <DropdownItem goToMenu="main" leftIcon={<FaArrowAltCircleLeft />}>
                         <h2>Back</h2>
                     </DropdownItem>
-                    <a className="menu-item" onClick={() => Logout(user, setStatusLogout)}>
+                    <a className="menu-item" onClick={() => Logout(setStatusLogout)}>
                         <span className="icon-button">{<FaUserTimes/>}</span>
                         <h2>Logout</h2>
                     </a>

@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { FaGoogle } from "react-icons/fa";
 import { GoogleLogin } from 'react-google-login';
 import { env } from "../../config.js"
+import Cookies from 'js-cookie'
 
 const LoginButton = (setStatusLog) => {
 
@@ -15,8 +16,10 @@ const LoginButton = (setStatusLog) => {
             }).then((response) => {
                 if (response.data)
                     setStatusLog(response.data);
-                if (response.data === "User logged")
-                    localStorage.setItem('user', JSON.stringify(response.data));
+                if (response.data === "User logged") {
+                    // localStorage.setItem('user', JSON.stringify(response.data));
+                    Cookies.set('user', JSON.stringify(response.data));
+                }
             })
         }
     }

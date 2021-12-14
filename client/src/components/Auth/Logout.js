@@ -1,12 +1,10 @@
-import LogoutGoogle from "./LogoutGoogle";
-import LogoutDb from "./LogoutDb";
+import Cookies from 'js-cookie'
 
-const Logout = (user, setStatusLogout) => {
-    if (user.usergoogleid !== null)
-        LogoutGoogle(setStatusLogout);
-    else {
-        LogoutDb(setStatusLogout);
-    }
+const Logout = (setStatusLogout) => {
+    Cookies.remove('user');
+    Cookies.remove('exchanges');
+    Cookies.remove('convertCurrency');
+    setStatusLogout("logout");
 };
 
 export default Logout;
