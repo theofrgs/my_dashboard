@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { styled } from "@mui/material/styles";
 import { Button, TextField, Box, InputAdornment, Paper, Grid } from "@mui/material";
 import { FaCloudSunRain, FaCity } from "react-icons/fa"
@@ -8,11 +8,36 @@ import "../../App.css"
 export default function ForecastWeatherWidget() {
     const [weather, setWeather] = useState(undefined);
     const [locations, setLocations] = useState("");
+    const [timer, setTimer] = useState(0);
+    const [timerState, setTimerState] = useState(false);
+
     const callWeatherService = () => {
         getWeather((data) => {
             setWeather(data)
         }, locations, "forecast"
         )
+    }
+
+    useEffect(() => {
+        if (timerState) {
+            if (timer === 10) {
+                callWeatherService()
+                setTimer(0);
+            }
+            const interval = setInterval(() => {
+                setTimer(timer => timer + 1);
+            }, 1000);
+            return () => {
+                clearInterval(interval);
+            }
+        }
+
+    }, [timer, timerState, setTimer, setTimerState, callWeatherService]);
+
+    const onClickForecast = () => {
+        setTimerState(true);
+        setTimer(0);
+        callWeatherService();
     }
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -47,11 +72,11 @@ export default function ForecastWeatherWidget() {
                 <Box sx={{
                     marginBottom: "10px"
                 }}>
-                    <Button variant="outlined" startIcon={<FaCloudSunRain />} className="location_searcher" onClick={callWeatherService}>
+                    <Button variant="outlined" startIcon={<FaCloudSunRain />} className="location_searcher" onClick={onClickForecast}>
                         Get weather
                     </Button>
                 </Box>
-                <Box className="app__data" sx={{alignItems: "center"}}>
+                <Box className="app__data" sx={{ alignItems: "center" }}>
                     <Grid container spacing={1}>
                         <Grid item xs>
                             <Item>Today</Item>
@@ -76,6 +101,7 @@ export default function ForecastWeatherWidget() {
                     </Grid>
                 </Box>
             </div>
+            <p1>Timer: {timer}</p1>
         </div>
     );
 };
