@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { getConvertCurrency } from "../../controller/session";
 import convertCurrency from "../../components/convertCurrency";
-import { Button  } from "@mui/material";
+import { Button } from "@mui/material";
 import { connectConvertCurrency } from "../../controller/connectApi";
 
 
@@ -11,12 +11,36 @@ export default function ConverterCurrency() {
     const [exchangesConnected, setExchangesConnected] = useState(false);
     const [currencyToConvert, setCurrencyToConvert] = useState("EUR");
     const [currencyDesired, setCurrencyDesired] = useState("");
+    const [timer, setTimer] = useState(0);
+    const [interact, setInteract] = useState(false);
+    const [timerState, setTimerState] = useState(false);
 
     useEffect(() => {
-        if (currencyToConvert !== "" && currencyDesired !== "" && currencyToConvert.length === 3 && currencyDesired.length === 3) {
+        if (currencyToConvert !== "" && currencyDesired !== "" && currencyToConvert.length === 3 && currencyDesired.length === 3)
             connectConvertCurrency(currencyToConvert, setExchangesConnected);
+    }, [exchangesConnected, currencyToConvert, currencyDesired, interact, setExchangesSession, setExchangesConnected]);
+
+    useEffect(() => {
+        if (timerState) {
+            if (timer === 10) {
+                setInteract(!interact);
+                setTimer(0);
+            }
+            const interval = setInterval(() => {
+                setTimer(timer => timer + 1);
+            }, 1000);
+            return () => {
+                clearInterval(interval);
+            }
         }
-    }, [exchangesConnected, currencyToConvert, currencyDesired, setExchangesSession, setExchangesConnected]);
+
+    }, [timer, timerState, interact, setTimer, setTimerState, setInteract]);
+
+    const onClickConvert = () => {
+        setTimerState(true);
+        setTimer(0);
+        getConvertCurrency(setExchangesSession, setExchangesConnected)
+    }
 
     return (
         <div>
@@ -32,12 +56,13 @@ export default function ConverterCurrency() {
                     variant="outlined"
                     onChange={(e) => { setCurrencyDesired(e.target.value.toUpperCase()) }} />
                 <Button
-                    onClick={() => getConvertCurrency(setExchangesSession, setExchangesConnected)}
+                    onClick={() => onClickConvert()}
                     variant="outlined">
                     Convert / Update
                 </Button>
                 {convertCurrency(exchangesSession, currencyToConvert, currencyDesired)}
             </center>
+            <p1>Timer: {timer}</p1>
         </div>
     );
 }

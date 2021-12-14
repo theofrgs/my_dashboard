@@ -1,9 +1,7 @@
 import Axios from 'axios'
-import formatDate from "../formatDate";
 import Cookies from 'js-cookie'
 
-const connectExchanges = (setExchangesConnected, dateFrom) => {
-    var dateFromAPi = formatDate(dateFrom);
+const connectExchanges = (setExchangesConnected, dateFromAPi) => {
 
     const getOldData = (response) => {
         var data = JSON.parse(JSON.stringify(response.data))

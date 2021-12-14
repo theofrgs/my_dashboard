@@ -4,7 +4,6 @@ import { getExchangesSession } from "../../controller/session";
 import findCurrency from "../../components/findCurrency";
 import { connectExchanges } from "../../controller/connectApi";
 import Button from "@material-ui/core/Button";
-import formatDate from "../../components/formatDate";
 
 export default function Exchanges() {
     const [exchangesSession, setExchangesSession] = useState("");
@@ -15,14 +14,12 @@ export default function Exchanges() {
     const [timerState, setTimerState] = useState(false);
 
     // eslint-disable-next-line
-    var dateFrom = new Date();
+    const dateFrom = new Date();
 
     dateFrom.setMonth(dateFrom.getMonth() - 1);
-    dateFrom = formatDate(dateFrom)
     useEffect(() => {
         if (currency !== "" && currency.length === 3) {
             connectExchanges(setExchangesConnected, dateFrom);
-            console.log("call")
         }
     }, [exchangesConnected, interact, setExchangesConnected, dateFrom, currency]);
 

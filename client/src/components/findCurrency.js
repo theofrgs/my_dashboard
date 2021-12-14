@@ -8,10 +8,9 @@ function calcPoint(exchangesSession, currency ,dateFrom) {
 
 }
 
-function findCurrency(exchangesSession, dateFrom, currency) {
+function findCurrency(exchangesSession, date, currency) {
     if (!exchangesSession.data)
         return null;
-    var date = fomatDate(dateFrom);
     var todayDate = fomatDate(new Date())
     if (exchangesSession.data[date][currency] !== undefined && currency !== "EUR") {
         var output1 = `At ${date} = ${currency} -> ${exchangesSession.data[date][currency]}`
