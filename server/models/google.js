@@ -10,7 +10,6 @@ function login(req, res) {
                 res.send({ error: error });
             }
             if (results.length > 0 && results[0].usergoogleid === userid) {
-                req.session.user = results;
                 res.send("User logged");
             } else {
                 res.send("User not found");

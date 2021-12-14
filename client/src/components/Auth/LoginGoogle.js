@@ -1,29 +1,24 @@
-// import Axios from 'axios';
+import Axios from 'axios';
 import { FaGoogle } from "react-icons/fa";
 import { GoogleLogin } from 'react-google-login';
 import { env } from "../../config.js"
 
-
 const LoginButton = (setStatusLog) => {
-    // const { user, loginWithPopup } = useAuth0();
-    // const Login = () => {
-    //     loginWithPopup();
-    //     Axios.post("http://localhost:8080/google/login", {
-    //         username: user.email,
-    //         userid: user.sub
-    //     }).then((response) => {
-    //         if (response.data)
-    //             setStatusLog(response.data);
-    //     })
-    // }
-    // return (
-    //     <FaGoogle onClick={() => Login()}>
-    //         Log In
-    //     </FaGoogle>
-    // )
 
-    const responseGoogle = (response) => {
-        console.log(response);
+    const handleResponseGoogle = (response) => {
+        if (response.error) {
+            setStatusLog(response.error);
+        } else {
+            Axios.post("http://localhost:8080/google/login", {
+                username: response.profileObj.email,
+                userid: response.profileObj.googleId
+            }).then((response) => {
+                if (response.data)
+                    setStatusLog(response.data);
+                if (response.data === "User logged")
+                    localStorage.setItem('user', JSON.stringify(response.data));
+            })
+        }
     }
 
     return (
@@ -36,8 +31,8 @@ const LoginButton = (setStatusLog) => {
                     </FaGoogle>
                 )}
                 buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
+                onSuccess={handleResponseGoogle}
+                onFailure={handleResponseGoogle}
                 cookiePolicy={'single_host_origin'}
             />
         </>
