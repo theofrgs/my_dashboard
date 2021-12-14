@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField, Box, InputAdornment } from "@mui/material";
 import { FaCloudSunRain, FaCity } from "react-icons/fa"
-import getWeather from "../../api/weatherAPI.js";
+import getWeather from "../../components/api/weatherAPI.js";
 import "../../App.css"
 
 export default function CurrentWeatherWidget() {

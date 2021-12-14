@@ -1,4 +1,4 @@
-import { env } from "../config.js"
+import { env } from "../../config.js"
 
 function getWeather(callback, locations, mode) {
     fetch(

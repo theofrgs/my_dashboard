@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Button, TextField, Box, InputAdornment, Paper, Grid } from "@mui/material";
 import { FaCloudSunRain, FaCity } from "react-icons/fa"
-import getWeather from "../../api/weatherAPI.js";
+import getWeather from "../../components/api/weatherAPI";
 import "../../App.css"
 
 export default function ForecastWeatherWidget() {
