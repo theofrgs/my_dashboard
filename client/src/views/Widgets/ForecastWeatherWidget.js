@@ -12,7 +12,6 @@ export default function ForecastWeatherWidget() {
     const [timerState, setTimerState] = useState(false);
 
     const callWeatherService = useCallback(() => {
-        console.log("api ForecastWeatherWidget")
         getWeather((data) => {
             setWeather(data)
         }, locations, "forecast"

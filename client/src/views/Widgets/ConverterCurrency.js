@@ -18,7 +18,6 @@ export default function ConverterCurrency() {
     useEffect(() => {
         if (currencyToConvert !== "" && currencyDesired !== "" && currencyToConvert.length === 3 && currencyDesired.length === 3) {
             connectConvertCurrency(currencyToConvert, setExchangesConnected);
-            console.log("api ConverterCurrency")
         }
     }, [exchangesConnected, currencyToConvert, currencyDesired, interact, setExchangesSession, setExchangesConnected]);
 
