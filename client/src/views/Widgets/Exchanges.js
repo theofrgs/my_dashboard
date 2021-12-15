@@ -22,6 +22,7 @@ export default function Exchanges() {
     useEffect(() => {
         if (currency !== "" && currency.length === 3) {
             connectExchanges(setExchangesConnected, dateFrom);
+            console.log("api Exchanges")
         }
     }, [exchangesConnected, interact, setExchangesConnected, dateFrom, currency]);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useCallback} from "react";
 import { styled } from "@mui/material/styles";
 import { Button, TextField, Box, InputAdornment, Paper, Grid } from "@mui/material";
 import { FaCloudSunRain, FaCity } from "react-icons/fa"
@@ -11,12 +11,13 @@ export default function ForecastWeatherWidget() {
     const [timer, setTimer] = useState(0);
     const [timerState, setTimerState] = useState(false);
 
-    const callWeatherService = () => {
+    const callWeatherService = useCallback(() => {
+        console.log("api ForecastWeatherWidget")
         getWeather((data) => {
             setWeather(data)
         }, locations, "forecast"
         )
-    }
+    }, [locations]);
 
     useEffect(() => {
         if (timerState) {

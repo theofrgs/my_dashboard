@@ -16,8 +16,10 @@ export default function ConverterCurrency() {
     const [timerState, setTimerState] = useState(false);
 
     useEffect(() => {
-        if (currencyToConvert !== "" && currencyDesired !== "" && currencyToConvert.length === 3 && currencyDesired.length === 3)
+        if (currencyToConvert !== "" && currencyDesired !== "" && currencyToConvert.length === 3 && currencyDesired.length === 3) {
             connectConvertCurrency(currencyToConvert, setExchangesConnected);
+            console.log("api ConverterCurrency")
+        }
     }, [exchangesConnected, currencyToConvert, currencyDesired, interact, setExchangesSession, setExchangesConnected]);
 
     useEffect(() => {
