@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import WidgetJson from "../../WidgetConfig.json"
+import { WidgetConfigJson } from "../../WidgetConfig.js"
 
 const useStyles = makeStyles({
     root: {
@@ -28,12 +28,6 @@ const useStyles = makeStyles({
     }
 });
 
-const widgetNames = {};
-
-Object.keys(WidgetJson).map((key) => (
-    widgetNames[key] = WidgetJson[key].name
-));
-
 //VIEW
 export default function Widget({ id, onRemoveItem, component: Item }) {
     const classes = useStyles();
@@ -41,7 +35,7 @@ export default function Widget({ id, onRemoveItem, component: Item }) {
         <Card className={classes.root}>
             <div className={classes.header}>
                 <Typography variant="h6" gutterBottom>
-                    {widgetNames[id]}
+                    {WidgetConfigJson.widgetNames[id]}
                 </Typography>
                 <div className={classes.spacer} />
                 <IconButton aria-label="delete" onClick={() => onRemoveItem(id)}>

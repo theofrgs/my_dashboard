@@ -9,19 +9,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import WidgetJson from "../../WidgetConfig.json"
+import { WidgetConfigJson } from "../../WidgetConfig.js"
 
 const useStyles = makeStyles((theme) => ({
     popup: {
         padding: theme.spacing(2)
     }
 }));
-
-const widgetNames = {};
-
-Object.keys(WidgetJson).map((key) => (
-    widgetNames[key] = WidgetJson[key].name
-));
 
 //VIEW
 export default function AddList({
@@ -84,7 +78,7 @@ export default function AddList({
                                             name={i}
                                         />
                                     }
-                                    label={widgetNames[i]}
+                                    label={WidgetConfigJson.widgetNames[i]}
                                     key={i}
                                 />
                             ))}
