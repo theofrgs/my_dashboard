@@ -1,0 +1,38 @@
+{
+    "a": {
+        "name": "Exchanges",
+        "initialLayouts": {
+            "x": "0",
+            "y": "0",
+            "w": "1",
+            "h": "4"
+        }
+    },
+    "b": {
+        "name": "ConverterCurrency",
+        "initialLayouts": {
+            "x": "1",
+            "y": "0",
+            "w": "3",
+            "h": "4"
+        }
+    },
+    "c": {
+        "name": "5 Days Forecast Weather",
+        "initialLayouts": {
+            "x": "4",
+            "y": "0",
+            "w": "1",
+            "h": "4"
+        }
+    },
+    "d": {
+        "name": "Current Weather",
+        "initialLayouts": {
+            "x": "0",
+            "y": "4",
+            "w": "2",
+            "h": "4"
+        }
+    }
+}
