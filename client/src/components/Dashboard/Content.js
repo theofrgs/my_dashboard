@@ -1,42 +1,14 @@
 import React, { useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
-
-import Exchanges from "../../views/Widgets/Exchanges";
-import ConverterCurrency from "../../views/Widgets/ConverterCurrency";
+import { WidgetConfigJson } from "../../WidgetConfig.js"
 import TopBar from "./TopBar";
 import Widget from "./Widget";
-import CurrentWeatherWidget from "../../views/Widgets/CurrentWeatherWidget"
-import ForecastWeatherWidget from "../../views/Widgets/ForecastWeatherWidget"
-import WidgetJson from "../../WidgetConfig.json"
-
-const originalItems = [];
-
-Object.keys(WidgetJson).map((key) => (
-    originalItems.push(key)
-));
-
-const initialLayouts = { lg: [] };
-
-Object.keys(WidgetJson).map((key) => (
-    WidgetJson[key].initialLayouts['i'] = key
-));
-
-Object.keys(WidgetJson).map((key) => (
-    initialLayouts['lg'].push(WidgetJson[key].initialLayouts)
-));
-
-const componentList = {
-    a: Exchanges,
-    b: ConverterCurrency,
-    c: ForecastWeatherWidget,
-    d: CurrentWeatherWidget,
-};
 
 function Content({ size: { width } }) {
-    const [items, setItems] = useState(originalItems);
+    const [items, setItems] = useState(WidgetConfigJson.originalItems);
     const [layouts, setLayouts] = useState(
-        getFromLS("layouts") || initialLayouts
+        getFromLS("layouts") || WidgetConfigJson.initialLayouts
     );
     const onLayoutChange = (_, allLayouts) => {
         setLayouts(allLayouts);
@@ -59,7 +31,7 @@ function Content({ size: { width } }) {
                 items={items}
                 onRemoveItem={onRemoveItem}
                 onAddItem={onAddItem}
-                originalItems={originalItems}
+                originalItems={WidgetConfigJson.originalItems}
             />
             <ResponsiveGridLayout
                 className="layout"
@@ -80,7 +52,7 @@ function Content({ size: { width } }) {
                             id={key}
                             onRemoveItem={onRemoveItem}
                             backgroundColor="#867ae9"
-                            component={componentList[key]}
+                            component={WidgetConfigJson.componentList[key]}
                         />
                     </div>
                 ))}
