@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import WidgetJson from "../../WidgetConfig.json"
 
 const useStyles = makeStyles({
     root: {
@@ -27,15 +28,11 @@ const useStyles = makeStyles({
     }
 });
 
-const widgetNames = {
-    a: "Exchanges",
-    b: "ConverterCurrency",
-    c: "5 Days Forecast Weather",
-    d: "Current Weather",
-    //   d: "Fourth Widget",
-    //   f: "Third Widget",
-    //   h: "Fourth Widget"
-};
+const widgetNames = {};
+
+Object.keys(WidgetJson).map((key) => (
+    widgetNames[key] = WidgetJson[key].name
+));
 
 //VIEW
 export default function Widget({ id, onRemoveItem, component: Item }) {

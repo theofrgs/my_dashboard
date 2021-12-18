@@ -9,89 +9,89 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import WidgetJson from "../../WidgetConfig.json"
 
 const useStyles = makeStyles((theme) => ({
-  popup: {
-    padding: theme.spacing(2)
-  }
+    popup: {
+        padding: theme.spacing(2)
+    }
 }));
 
-const widgetNames = {
-  a: "Exchanges",
-  b: "ConverterCurrency",
-  c: "5 Days Forecast Weather",
-  d: "Current Weather",
-};
+const widgetNames = {};
+
+Object.keys(WidgetJson).map((key) => (
+    widgetNames[key] = WidgetJson[key].name
+));
 
 //VIEW
 export default function AddList({
-  items,
-  onRemoveItem,
-  onAddItem,
-  originalItems
+    items,
+    onRemoveItem,
+    onAddItem,
+    originalItems
 }) {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+    const open = Boolean(anchorEl);
+    const id = open ? "simple-popover" : undefined;
 
-  const handleChange = (e) => {
-    if (e.target.checked) {
-      onAddItem(e.target.name);
-    } else {
-      onRemoveItem(e.target.name);
-    }
-  };
+    const handleChange = (e) => {
+        if (e.target.checked) {
+            onAddItem(e.target.name);
+        } else {
+            onRemoveItem(e.target.name);
+        }
+    };
 
-  return (
-    <>
-      <IconButton aria-label="add" onClick={handleClick} aria-describedby={id}>
-        <AddCircleOutlineIcon />
-      </IconButton>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center"
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center"
-        }}
-      >
-        <div className={classes.popup}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Select Widgets</FormLabel>
-            <FormGroup>
-              {originalItems.map((i) => (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={items.includes(i)}
-                      onChange={handleChange}
-                      name={i}
-                    />
-                  }
-                  label={widgetNames[i]}
-                  key={i}
-                />
-              ))}
-            </FormGroup>
-          </FormControl>
-        </div>
-      </Popover>
-    </>
-  );
+    return (
+        <>
+            <IconButton aria-label="add" onClick={handleClick} aria-describedby={id}>
+                <AddCircleOutlineIcon />
+            </IconButton>
+            <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center"
+                }}
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                }}
+            >
+                <div className={classes.popup}>
+                    <FormControl component="fieldset">
+                        <FormLabel component="legend">Select Widgets</FormLabel>
+                        <FormGroup>
+                            {originalItems.map((i) => (
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={items.includes(i)}
+                                            onChange={handleChange}
+                                            name={i}
+                                        />
+                                    }
+                                    label={widgetNames[i]}
+                                    key={i}
+                                />
+                            ))}
+                        </FormGroup>
+                    </FormControl>
+                </div>
+            </Popover>
+        </>
+    );
 }
