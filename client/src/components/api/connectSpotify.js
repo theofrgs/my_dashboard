@@ -15,13 +15,28 @@ const connectSpotify = (setSpotifyConnected, setStatusLog) => {
             redirect_uri: env.SPOTIFY_REDIRECT_URI,
         });
 
-    async function onCode(code) {
-        await Axios.post("http://localhost:8080/connectApi/spotify", {
-            code: code
+    const getRefreshedToken = (spotifyCookie) => {
+        Axios.post("http://localhost:8080/spotify/refresh", {
+            refresh_token: spotifyCookie.refresh_token
         }).then((response) => {
             if (response.data) {
                 Cookies.set('spotify', JSON.stringify(response.data));
                 setSpotifyConnected(true);
+            }
+        })
+    }
+
+    const onCode = (code) => {
+        Axios.post("http://localhost:8080/connectApi/spotify", {
+            code: code
+        }).then((response) => {
+            if (response.data) {
+                if (response.data !== "Error with spotify authentification") {
+                    getRefreshedToken(response.data)
+                    setStatusLog("Spotify API connectd")
+                } else {
+                    setStatusLog(response.data)
+                }
             }
         })
     }

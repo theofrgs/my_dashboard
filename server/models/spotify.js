@@ -24,32 +24,27 @@ function connect(req, res) {
         Axios.post('https://accounts.spotify.com/api/token', querystring.stringify(authOptions.form),
             authOptions
         ).then(tokenresponse => {
-            console.log(tokenresponse.data.access_token);
             res.send(tokenresponse.data);
         });
     }
 }
 
 function refreshToken(req, res) {
-
-    var refresh_token = req.query.refresh_token;
     var authOptions = {
-        url: 'https://accounts.spotify.com/api/token',
-        headers: { 'Authorization': 'Basic ' + (new Buffer(apiConfig.spotifyClientId + ':' + apiConfig.spotifyClientKey).toString('base64')) },
         form: {
             grant_type: 'refresh_token',
-            refresh_token: refresh_token
+            refresh_token: req.body.refresh_token
         },
-        json: true
+        headers: {
+            'Authorization': 'Basic ' + btoa(apiConfig.spotifyClientId + ':' + apiConfig.spotifyClientKey)
+        },
+        json: true,
     };
 
-    request.post(authOptions, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            var access_token = body.access_token;
-            res.send({
-                'access_token': access_token
-            });
-        }
+    Axios.post('https://accounts.spotify.com/api/token', querystring.stringify(authOptions.form),
+        authOptions
+    ).then(response => {
+        res.send(response.data);
     });
 }
 
