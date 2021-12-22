@@ -1,17 +1,14 @@
-import { connectSpotify } from "../../controller/connectApi";
+import LoginSpotify from "../LoginPage/LoginSpotify"
+import { useState } from "react";
 
 export default function Spotify() {
 
-    const onClickSpotify = () => {
-        return (connectSpotify())
-    }
+    const [spotifyConnected, setSpotifyConnected] = useState(false);
 
-    return (
-        <div>
-            <center>
-                {/* <Button startIcon={<FaSpotify />} onClick={onClickSpotify} /> */}
-                {connectSpotify()}
-            </center>
-        </div>
-    );
+    if (true) {
+        return (LoginSpotify(setSpotifyConnected))
+    } else {
+        console.log("spotifyConnected")
+    }
+    return (null)
 }

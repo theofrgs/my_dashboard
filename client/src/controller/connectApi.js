@@ -10,8 +10,8 @@ function connectConvertCurrency(currencyToConvert, setExchangesConnected) {
     convertCurrency(currencyToConvert, setExchangesConnected);
 }
 
-function connectSpotify() {
-    return (spotify());
+function connectSpotify(setSpotifyConnected, setStatusLog) {
+    return (spotify(setSpotifyConnected, setStatusLog));
 }
 
 export {

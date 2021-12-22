@@ -5,6 +5,7 @@ var port = 8080;
 var database = require("./routes/database");
 var exchanges = require("./routes/exchanges");
 var google = require("./routes/google");
+var spotify = require("./routes/spotify");
 var about = require("./routes/about");
 
 app.use(express.json());
@@ -14,4 +15,5 @@ app.listen(port, hostname, () => console.log(`API Server listening on port ${por
 
 google.google(app);
 exchanges.exchanges(app);
+spotify.spotify(app);
 about.about(app);

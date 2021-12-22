@@ -2,14 +2,11 @@ import { env } from "../../config";
 import OauthPopup from "react-oauth-popup";
 import querystring from "querystring";
 import { FaSpotify } from "react-icons/fa";
-import Button from "@material-ui/core/Button";
+import Axios from 'axios'
+import IconButton from '@material-ui/core/IconButton';
+import Cookies from 'js-cookie'
 
-const onCode = (code) => {
-    console.log(JSON.parse(JSON.stringify(code)));
-}
-const onClose = () => console.log("closed!");
-
-const connectSpotify = () => {
+const connectSpotify = (setSpotifyConnected, setStatusLog) => {
     const url = 'https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -18,13 +15,28 @@ const connectSpotify = () => {
             redirect_uri: env.SPOTIFY_REDIRECT_URI,
         });
 
+    async function onCode(code) {
+        await Axios.post("http://localhost:8080/connectApi/spotify", {
+            code: code
+        }).then((response) => {
+            if (response.data) {
+                Cookies.set('spotify', JSON.stringify(response.data));
+                setSpotifyConnected(true);
+            }
+        })
+    }
+
+    const onClose = () => { };
+
     return (
         <OauthPopup
             url={url}
             onCode={onCode}
             onClose={onClose} >
             <div>
-                <Button startIcon={<FaSpotify />} />
+                <IconButton aria-label="delete">
+                    <FaSpotify />
+                </IconButton>
             </div>
         </OauthPopup>
     )
