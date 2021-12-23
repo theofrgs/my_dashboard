@@ -27,7 +27,7 @@ const updateCountryName = (country) => {
         </p1 >
     )
 }
-export default function Spotify() {
+export default function SpotifyRelease() {
     const [spotifyConnected, setSpotifyConnected] = useState(false);
     const [statusLog, setStatusLog] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
