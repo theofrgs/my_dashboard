@@ -9,6 +9,10 @@ function spotify(app) {
     app.post("/spotify/refresh", (req, res) => {
         spotify.refreshToken(req, res);
     });
+
+    app.post("/spotify/release", (req, res) => {
+        spotify.getRelease(req, res);
+    });
 }
 
 module.exports = {

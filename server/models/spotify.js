@@ -48,7 +48,28 @@ function refreshToken(req, res) {
     });
 }
 
+function getRelease(req, res) {
+    var authOptions = {
+        url: "https://api.spotify.com/v1/browse/new-releases",
+        form: {
+            country: FR,
+            limit: 3,
+
+        },
+        headers: {
+            'Authorization': 'Bearer ' + req.body.token
+        },
+        json: true,
+    };
+
+    Axios.get("", "", authOptions
+    ).then(response => {
+        res.send(response.data);
+    });
+}
+
 module.exports = {
     connect,
     refreshToken,
+    getRelease,
 }
