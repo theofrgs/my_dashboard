@@ -5,6 +5,28 @@ import dropDownCountryMenu from "../../components/dropDownCountryMenu";
 import getCountryLastRelease from "../../components/getCountryLastRelease"
 import releaseCarousel from "../../components/releaseCarousel"
 
+
+const updateCountryName = (country) => {
+    if (!country)
+        return (null)
+
+    var countryName = ""
+
+    if (country === "FR") {
+        countryName = "France"
+    }
+    if (country === "US") {
+        countryName = "United States"
+    }
+    if (country === "CH") {
+        countryName = "China"
+    }
+    return (
+        < p1 >
+            Last Release of {countryName}
+        </p1 >
+    )
+}
 export default function Spotify() {
     const [spotifyConnected, setSpotifyConnected] = useState(false);
     const [statusLog, setStatusLog] = useState("");
@@ -26,6 +48,7 @@ export default function Spotify() {
         <>
             <center>
                 {dropDownCountryMenu(anchorEl, setAnchorEl, setCountry)}
+                {updateCountryName(country)}
                 {releaseCarousel(spotifyLastRelease)}
             </center>
         </>
