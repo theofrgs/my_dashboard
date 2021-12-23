@@ -42,12 +42,32 @@ export default function SpotifyTop50() {
     const [statusLog, setStatusLog] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
     const [country, setCountry] = useState("");
+    const [timer, setTimer] = useState(0);
+    const [interact, setInteract] = useState(false);
+    const [timerState, setTimerState] = useState(false);
 
     useEffect(() => {
         if (country !== "") {
             getTop(country, setSpotifyTop);
+            setTimerState(true);
+            setTimer(0);
         }
-    }, [country, setSpotifyTop])
+    }, [country, interact, setSpotifyTop])
+
+    useEffect(() => {
+        if (timerState) {
+            if (timer === 5) {
+                setInteract(!interact);
+                setTimer(0);
+            }
+            const interval = setInterval(() => {
+                setTimer(timer => timer + 1);
+            }, 1000);
+            return () => {
+                clearInterval(interval);
+            }
+        }
+    }, [timer, timerState, interact, setTimer, setTimerState, setInteract]);
 
     if (!spotifyConnected) {
         return Login(setSpotifyConnected, statusLog, setStatusLog)
@@ -59,6 +79,7 @@ export default function SpotifyTop50() {
             {dropDownCountryMenuTop(anchorEl, setAnchorEl, setCountry)}
             {updateCountryName(country)}
             {topSpotify(spotifyTop)}
+            <p1>Timer: {timer}</p1>
         </div>
     )
 
