@@ -33,25 +33,47 @@ export default function SpotifyRelease() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [country, setCountry] = useState("");
     const [spotifyLastRelease, setSpotifyLastRelease] = useState("");
+    const [timer, setTimer] = useState(0);
+    const [interact, setInteract] = useState(false);
+    const [timerState, setTimerState] = useState(false);
 
     useEffect(() => {
         if (country !== "") {
             getCountryLastRelease(country, setSpotifyLastRelease);
+            setTimerState(true);
+            setTimer(0);
+            console.log("call");
         }
-    }, [country, setSpotifyLastRelease])
+    }, [country, interact, setSpotifyLastRelease])
+
+    useEffect(() => {
+        if (timerState) {
+            if (timer === 20) {
+                setInteract(!interact);
+                setTimer(0);
+            }
+            const interval = setInterval(() => {
+                setTimer(timer => timer + 1);
+            }, 1000);
+            return () => {
+                clearInterval(interval);
+            }
+        }
+    }, [timer, timerState, interact, setTimer, setTimerState, setInteract]);
 
     if (!spotifyConnected) {
         return Login(setSpotifyConnected, statusLog, setStatusLog)
     }
 
     return (
-        <>
+        <div>
             <center>
                 {dropDownCountryMenu(anchorEl, setAnchorEl, setCountry)}
                 {updateCountryName(country)}
                 {releaseCarousel(spotifyLastRelease)}
             </center>
-        </>
+            <p1>Timer: {timer}</p1>
+        </div>
     )
 
 }

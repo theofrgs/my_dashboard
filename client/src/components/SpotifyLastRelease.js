@@ -1,7 +1,6 @@
 export default function SpotifyLastRelease(spotifyLastReleaseItem) {
     if (spotifyLastReleaseItem === null)
         return (null);
-    console.log(spotifyLastReleaseItem)
     return (
         <div>
             <div>
