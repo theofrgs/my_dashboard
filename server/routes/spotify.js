@@ -13,6 +13,10 @@ function spotify(app) {
     app.post("/spotify/release", (req, res) => {
         spotify.getRelease(req, res);
     });
+
+    app.post("/spotify/top", (req, res) => {
+        spotify.getTop(req, res);
+    });
 }
 
 module.exports = {

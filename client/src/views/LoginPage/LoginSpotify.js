@@ -4,10 +4,10 @@ import NotifAuthComponent from '../../components/Auth/NotifAuthComponent'
 export default function Login(setSpotifyConnected, statusLog, setStatusLog) {
     return (
         <div>
-            <center>
+            {/* <center> */}
                 {connectSpotify(setSpotifyConnected, setStatusLog)}
                 {NotifAuthComponent(statusLog)}
-            </center>
+            {/* </center> */}
         </div>
     );
 }

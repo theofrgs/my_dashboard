@@ -70,8 +70,27 @@ function getRelease(req, res) {
     })
 }
 
+function getTop(req, res) {
+    var authOptions = {
+        headers: {
+            'Authorization': 'Bearer ' + req.body.token
+        },
+        json: true,
+    };
+
+    Axios.get(`https://api.spotify.com/v1/playlists/${req.body.playlist_id}`, authOptions
+    ).then(response => {
+        // console.log(response.data.tracks.items);
+        res.send(response.data);
+    }).catch(e => {
+        if (e.response && e.response.data)
+            console.log(e.response.data);
+    })
+}
+
 module.exports = {
     connect,
     refreshToken,
     getRelease,
+    getTop,
 }

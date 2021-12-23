@@ -27,6 +27,7 @@ const updateCountryName = (country) => {
         </p1 >
     )
 }
+
 export default function SpotifyRelease() {
     const [spotifyConnected, setSpotifyConnected] = useState(false);
     const [statusLog, setStatusLog] = useState("");
@@ -42,7 +43,6 @@ export default function SpotifyRelease() {
             getCountryLastRelease(country, setSpotifyLastRelease);
             setTimerState(true);
             setTimer(0);
-            console.log("call");
         }
     }, [country, interact, setSpotifyLastRelease])
 
