@@ -13,7 +13,7 @@ const _componentList = {
     b: ConverterCurrency,
     c: ForecastWeatherWidget,
     d: CurrentWeatherWidget,
-    f: Spotify,
+    e: Spotify,
 };
 
 Object.keys(WidgetJson).map((key) => (

@@ -1,59 +1,66 @@
 import { useEffect, useState } from "react";
+import Axios from 'axios'
 
 import Login from "../LoginPage/LoginSpotify"
+import Cookies from "js-cookie";
 import SpotifyLastRelease from "../../components/SpotifyLastRelease";
+import dropDownCountryMenu from "../../components/dropDownCountryMenu";
 
+import Carousel from 'react-elastic-carousel';
 
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+function getCountryLastRelease(country, setSpotifyLastRelease) {
+    var spotifyCookie = JSON.parse(Cookies.get("spotify"))
 
-// import Cookies from 'js-cookie'
+    Axios.post("http://localhost:8080/spotify/release", {
+        token: spotifyCookie.access_token,
+        country: country
+    }).then((response) => {
+        if (response.data) {
+            setSpotifyLastRelease(JSON.parse(JSON.stringify(response.data)))
+        }
+    })
+}
+
+const mycarrousel = (spotifyLastReleaseItem) => {
+    if (!spotifyLastReleaseItem)
+        return (null)
+
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+    ];
+    const items = [0, 1, 2];
+
+    return (
+        <Carousel breakPoints={breakPoints}>
+            {items.map((item) => (SpotifyLastRelease(spotifyLastReleaseItem.albums.items[item])))}
+        </Carousel>
+    )
+}
 
 export default function Spotify() {
     const [spotifyConnected, setSpotifyConnected] = useState(false);
     const [statusLog, setStatusLog] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
     const [country, setCountry] = useState("");
+    const [spotifyLastRelease, setSpotifyLastRelease] = useState("");
 
-    const open = Boolean(anchorEl);
+    useEffect(() => {
+        if (country !== "") {
+            getCountryLastRelease(country, setSpotifyLastRelease);
+        }
+    }, [country, setSpotifyLastRelease])
+
     if (!spotifyConnected) {
         return Login(setSpotifyConnected, statusLog, setStatusLog)
     }
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = (event) => {
-        setAnchorEl(null);
-    };
-    const handleItemClick = (country) => {
-        setCountry(country)
-        setAnchorEl(null);
-    };
     return (
-
-        <div>
-            <Button
-                id="basic-button"
-                aria-controls="basic-menu"
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}>
-                Country
-            </Button>
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                }}>
-                <MenuItem onClick={() => handleItemClick("France")}>France</MenuItem>
-                <MenuItem onClick={() => handleItemClick("UnitedState")}>United States</MenuItem>
-                <MenuItem onClick={() => handleItemClick("China")}>China</MenuItem>
-            </Menu>
-        </div>
+        <>
+            <center>
+                {dropDownCountryMenu(anchorEl, setAnchorEl, setCountry)}
+                {mycarrousel(spotifyLastRelease)}
+            </center>
+        </>
     )
+
 }

@@ -41,8 +41,7 @@ function refreshToken(req, res) {
         json: true,
     };
 
-    Axios.post('https://accounts.spotify.com/api/token', querystring.stringify(authOptions.form),
-        authOptions
+    Axios.post('https://accounts.spotify.com/api/token', querystring.stringify(authOptions.form), authOptions
     ).then(response => {
         res.send(response.data);
     });
@@ -50,11 +49,10 @@ function refreshToken(req, res) {
 
 function getRelease(req, res) {
     var authOptions = {
-        url: "https://api.spotify.com/v1/browse/new-releases",
         form: {
-            country: FR,
+            country: req.body.country,
             limit: 3,
-
+            offset: 0,
         },
         headers: {
             'Authorization': 'Bearer ' + req.body.token
@@ -62,10 +60,14 @@ function getRelease(req, res) {
         json: true,
     };
 
-    Axios.get("", "", authOptions
+    Axios.get("https://api.spotify.com/v1/browse/new-releases?" + querystring.stringify(authOptions.form), authOptions
     ).then(response => {
+        console.log(response.data.albums.items);
         res.send(response.data);
-    });
+    }).catch(e => {
+        if (e.response && e.response.data)
+            console.log(e.response.data);
+    })
 }
 
 module.exports = {
