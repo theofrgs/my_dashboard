@@ -62,7 +62,6 @@ function getRelease(req, res) {
 
     Axios.get("https://api.spotify.com/v1/browse/new-releases?" + querystring.stringify(authOptions.form), authOptions
     ).then(response => {
-        console.log(response.data.albums.items);
         res.send(response.data);
     }).catch(e => {
         if (e.response && e.response.data)
