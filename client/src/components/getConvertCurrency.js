@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-function getConvertCurrency(setExchangesSession, setExchangesConnected) {
+export default function getConvertCurrency(setExchangesSession, setExchangesConnected) {
 
     const cookierConvertCurrency = Cookies.get('convertCurrency');
 
@@ -9,5 +9,3 @@ function getConvertCurrency(setExchangesSession, setExchangesConnected) {
     setExchangesSession(JSON.parse(cookierConvertCurrency));
     setExchangesConnected(true);
 }
-
-export default getConvertCurrency;

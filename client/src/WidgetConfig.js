@@ -3,6 +3,8 @@ import Exchanges from "./views/Widgets/Exchanges";
 import ConverterCurrency from "./views/Widgets/ConverterCurrency";
 import CurrentWeatherWidget from "./views/Widgets/CurrentWeatherWidget"
 import ForecastWeatherWidget from "./views/Widgets/ForecastWeatherWidget"
+import SpotifyRelease from "./views/Widgets/SpotifyRelease"
+import SpotifyTop50 from "./views/Widgets/SpotifyTop50"
 
 const _widgetNames = {};
 const _originalItems = [];
@@ -12,6 +14,8 @@ const _componentList = {
     b: ConverterCurrency,
     c: ForecastWeatherWidget,
     d: CurrentWeatherWidget,
+    e: SpotifyRelease,
+    f: SpotifyTop50,
 };
 
 Object.keys(WidgetJson).map((key) => (

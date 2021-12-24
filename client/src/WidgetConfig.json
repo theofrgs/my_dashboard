@@ -34,5 +34,23 @@
             "w": 2,
             "h": 4
         }
+    },
+    "e": {
+        "name": "Spotify Last Release",
+        "initialLayouts": {
+            "x": "4",
+            "y": "4",
+            "w": "2",
+            "h": "4"
+        }
+    },
+    "f": {
+        "name": "Spotify Top 50",
+        "initialLayouts": {
+            "x": "7",
+            "y": "3",
+            "w": "4",
+            "h": "4"
+        }
     }
 }
