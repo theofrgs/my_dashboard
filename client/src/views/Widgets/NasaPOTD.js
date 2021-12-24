@@ -14,7 +14,7 @@ export default function NasaPOTD() {
         )
     }, []);
 
-    callNasaPOTD();
+    //callNasaPOTD();
 
     useEffect(() => {
         if (timerState) {
