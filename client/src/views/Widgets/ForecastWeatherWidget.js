@@ -20,7 +20,7 @@ export default function ForecastWeatherWidget() {
 
     useEffect(() => {
         if (timerState) {
-            if (timer === 10) {
+            if (timer === 30) {
                 callWeatherService()
                 setTimer(0);
             }

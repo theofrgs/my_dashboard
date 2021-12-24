@@ -7,6 +7,7 @@ const env = {
     STEAM_API_KEY: process.env.REACT_APP_STEAM_API_KEY,
     GOOGLE_CLIENT_ID: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_KEY: process.env.REACT_APP_GOOGLE_CLIENT_KEY,
+    NASA_API_KEY: process.env.REACT_APP_NASA_API_KEY
 }
 
 export { env };

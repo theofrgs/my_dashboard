@@ -23,7 +23,7 @@ export default function ConverterCurrency() {
 
     useEffect(() => {
         if (timerState) {
-            if (timer === 10) {
+            if (timer === 30) {
                 setInteract(!interact);
                 setTimer(0);
             }

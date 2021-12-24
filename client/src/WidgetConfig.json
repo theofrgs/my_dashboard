@@ -34,5 +34,14 @@
             "w": "2",
             "h": "4"
         }
+    },
+    "e": {
+        "name": "Nasa's Picture of the day",
+        "initialLayouts": {
+            "x": "0",
+            "y": "4",
+            "w": "2",
+            "h": "4"
+        }
     }
 }
