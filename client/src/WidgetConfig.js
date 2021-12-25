@@ -48,7 +48,7 @@ function getComponent(widgetName) {
             return ComponentList.SpotifyRelease;
         case 'Spotify Top 50':
             return ComponentList.SpotifyTop50;
-        case 'Nasa's Picture of the day':
+        case "Nasa's Picture of the day":
             return ComponentList.NasaPOTD;
         default:
             return null;
