@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
-import { WidgetConfigJson } from "../../WidgetConfig.js"
+import { WidgetConfig } from "../../WidgetConfig.js"
 import TopBar from "./TopBar";
 import { Widget } from "./Widget";
-
-function getComponentBack(widgets) {
-    for (var p in widgets) {
-        widgets[p].component = WidgetConfigJson.getComponent(widgets[p].name)
-    }
-}
 
 function getFromLS(key) {
     if (global.localStorage) {
@@ -34,14 +28,6 @@ function saveToLS(key, value) {
             })
         );
     }
-}
-
-function getLayoutFromId(layouts, id) {
-    for (var property in layouts["lg"]) {
-        if (layouts["lg"][property].i === id)
-            return (layouts["lg"][property])
-    }
-    return null;
 }
 
 function saveWidgetLayout(widgets, layouts) {
@@ -89,7 +75,7 @@ function Content({ size: { width } }) {
             <TopBar
                 onLayoutSave={onLayoutSave}
                 onAddItem={onAddItem}
-                WidgetNames={WidgetConfigJson.WidgetNames}
+                WidgetNames={WidgetConfig.WidgetNames}
             />
             <ResponsiveGridLayout
                 className="layout"

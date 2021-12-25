@@ -49,6 +49,20 @@ function getinitialLayouts(widgetName, id) {
     return (layout);
 }
 
+function getComponentBack(widgets) {
+    for (var p in widgets) {
+        widgets[p].component = WidgetConfigJson.getComponent(widgets[p].name)
+    }
+}
+
+function getLayoutFromId(layouts, id) {
+    for (var property in layouts["lg"]) {
+        if (layouts["lg"][property].i === id)
+            return (layouts["lg"][property])
+    }
+    return null;
+}
+
 function createWidget(widgetName) {
     var id = uuidv4();
     var component = getComponent(widgetName);
@@ -65,4 +79,6 @@ export const WidgetConfigJson = {
     createWidget: createWidget,
     getComponent: getComponent,
     getinitialLayouts: getinitialLayouts,
+    getLayoutFromId: getLayoutFromId,
+    getComponentBack: getComponentBack,
 }
