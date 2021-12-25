@@ -5,15 +5,28 @@
 The purpose of this project is to familiarize with the software platform we have chosen (nodejs) through the creation of a dashboard.
 To do this, we need to implement a web application that works like [Netvibes](https://www.netvibes.com/fr).
 
+## Prerequisites
+
+Before running any script, make sure that:
+
+`.example.env` is renamed in `.env` in the client directory, 
+
+`mariadb_config.json.exemple` is renamed in `.mariadb_config.json` in the server directory.
+
 ## Available Scripts
 
 In the project directory, you can run:
-Make sure that `.env.example` is renamed in `.env` in the client directory
 
 ### `./exec.sh`
 
 Runs the app in the development mode.\
-Open [https://172.18.0.2:3000](https://172.18.0.2:3000) to view it in the browser.
+Click on the link in your console, once the deployement is finished to view it in the browser.
+
+## Content
+
+The dashboard has 4 services with 6 widgets: Currency, weather, Nasa and Spotify.
+
+Each widget is refreshed after a 30 seconds delay.
 
 ## Learn More
 

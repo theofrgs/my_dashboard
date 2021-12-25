@@ -3,6 +3,7 @@ import Exchanges from "./views/Widgets/Exchanges";
 import ConverterCurrency from "./views/Widgets/ConverterCurrency";
 import CurrentWeatherWidget from "./views/Widgets/CurrentWeatherWidget"
 import ForecastWeatherWidget from "./views/Widgets/ForecastWeatherWidget"
+import NasaPOTD from "./views/Widgets/NasaPOTD";
 import SpotifyRelease from "./views/Widgets/SpotifyRelease"
 import SpotifyTop50 from "./views/Widgets/SpotifyTop50"
 
@@ -21,6 +22,7 @@ const ComponentList = {
     CurrentWeatherWidget: CurrentWeatherWidget,
     SpotifyRelease: SpotifyRelease,
     SpotifyTop50: SpotifyTop50,
+    NasaPOTD: NasaPOTD,
 };
 
 class Widget {
@@ -46,6 +48,8 @@ function getComponent(widgetName) {
             return ComponentList.SpotifyRelease;
         case 'Spotify Top 50':
             return ComponentList.SpotifyTop50;
+        case 'Nasa's Picture of the day':
+            return ComponentList.NasaPOTD;
         default:
             return null;
     }
