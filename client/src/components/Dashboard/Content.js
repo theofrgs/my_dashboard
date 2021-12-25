@@ -3,35 +3,93 @@ import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
 import { WidgetConfigJson } from "../../WidgetConfig.js"
 import TopBar from "./TopBar";
-import Widget from "./Widget";
+import { Widget } from "./Widget";
+
+function getComponentBack(widgets) {
+    for (var p in widgets) {
+        widgets[p].component = WidgetConfigJson.getComponent(widgets[p].name)
+    }
+}
+
+function getFromLS(key) {
+    if (global.localStorage) {
+        try {
+            var value = JSON.parse(global.localStorage.getItem("rgl-8"))[key]
+
+            if (key === "widgets")
+                getComponentBack(value)
+            return (value)
+        } catch (e) { }
+    }
+    return undefined;
+}
+
+function saveToLS(key, value) {
+    if (global.localStorage) {
+        global.localStorage.setItem(
+            "rgl-8",
+            JSON.stringify({
+                [key[0]]: value[0],
+                [key[1]]: value[1]
+            })
+        );
+    }
+}
+
+function getLayoutFromId(layouts, id) {
+    for (var property in layouts["lg"]) {
+        if (layouts["lg"][property].i === id)
+            return (layouts["lg"][property])
+    }
+    return null;
+}
+
+function saveWidgetLayout(widgets, layouts) {
+
+    for (var p in widgets) {
+        let layout = getLayoutFromId(layouts, widgets[p].id)
+
+        if (layout) {
+            widgets[p].layout = layout
+        }
+    }
+}
+
+function getWidgetsLayouts(widgets) {
+    const layouts = { lg: [] };
+
+    widgets.map((i) => (
+        layouts["lg"].push(i.layout)
+    ))
+    return layouts
+}
 
 function Content({ size: { width } }) {
-    const [items, setItems] = useState(WidgetConfigJson.originalItems);
-    const [layouts, setLayouts] = useState(
-        getFromLS("layouts") || WidgetConfigJson.initialLayouts
-    );
+
+    const [widgets, setWidgets] = useState(getFromLS("widgets") || [])
+    const [layouts, setLayouts] = useState(getFromLS("layouts") || {});
+
     const onLayoutChange = (_, allLayouts) => {
         setLayouts(allLayouts);
+        saveWidgetLayout(widgets, allLayouts)
     };
     const onLayoutSave = () => {
-        saveToLS("layouts", layouts);
+        saveToLS(["widgets", "layouts"], [widgets, layouts]);
     };
-    const onRemoveItem = (itemId) => {
-        setItems(items.filter((i) => i !== itemId));
+    const onRemoveItem = (widget) => {
+        setWidgets(widgets.filter((i) => i !== widget));
     };
-    const onAddItem = (itemId) => {
-        setItems([...items, itemId]);
+    const onAddItem = (widget) => {
+        setWidgets([...widgets, widget]);
+        setLayouts(getWidgetsLayouts(widgets));
     };
 
-    //VIEW
     return (
         <>
             <TopBar
                 onLayoutSave={onLayoutSave}
-                items={items}
-                onRemoveItem={onRemoveItem}
                 onAddItem={onAddItem}
-                originalItems={WidgetConfigJson.originalItems}
+                WidgetNames={WidgetConfigJson.WidgetNames}
             />
             <ResponsiveGridLayout
                 className="layout"
@@ -42,44 +100,23 @@ function Content({ size: { width } }) {
                 width={width}
                 onLayoutChange={onLayoutChange}
             >
-                {items.map((key) => (
+                {widgets.map((widget) => (
                     <div
-                        key={key}
+                        key={widget.id}
+                        widget={widget.name}
                         className="widget"
                         data-grid={{ w: 3, h: 2, x: 0, y: Infinity }}
                     >
                         <Widget
-                            id={key}
+                            widget={widget}
                             onRemoveItem={onRemoveItem}
                             backgroundColor="#867ae9"
-                            component={WidgetConfigJson.componentList[key]}
                         />
                     </div>
                 ))}
             </ResponsiveGridLayout>
         </>
-    );
+    )
 }
 
 export default withSize({ refreshMode: "debounce", refreshRate: 60 })(Content);
-
-function getFromLS(key) {
-    let ls = {};
-    if (global.localStorage) {
-        try {
-            ls = JSON.parse(global.localStorage.getItem("rgl-8")) || {};
-        } catch (e) { }
-    }
-    return ls[key];
-}
-
-function saveToLS(key, value) {
-    if (global.localStorage) {
-        global.localStorage.setItem(
-            "rgl-8",
-            JSON.stringify({
-                [key]: value
-            })
-        );
-    }
-}

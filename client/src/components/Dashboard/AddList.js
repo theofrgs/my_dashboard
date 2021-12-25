@@ -1,14 +1,13 @@
 import React from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import MenuItem from '@mui/material/MenuItem';
 import { WidgetConfigJson } from "../../WidgetConfig.js"
 
 const useStyles = makeStyles((theme) => ({
@@ -19,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
 
 //VIEW
 export default function AddList({
-    items,
-    onRemoveItem,
     onAddItem,
-    originalItems
+    WidgetNames
 }) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const open = Boolean(anchorEl);
+    const id = open ? "simple-popover" : undefined;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -35,15 +35,9 @@ export default function AddList({
         setAnchorEl(null);
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popover" : undefined;
-
-    const handleChange = (e) => {
-        if (e.target.checked) {
-            onAddItem(e.target.name);
-        } else {
-            onRemoveItem(e.target.name);
-        }
+    const handleChange = (i) => {
+        onAddItem(WidgetConfigJson.createWidget(i));
+        handleClose();
     };
 
     return (
@@ -67,19 +61,17 @@ export default function AddList({
             >
                 <div className={classes.popup}>
                     <FormControl component="fieldset">
-                        <FormLabel component="legend">Select Widgets</FormLabel>
+                        <FormLabel component="legend">Add Widgets</FormLabel>
                         <FormGroup>
-                            {originalItems.map((i) => (
+                            {Object.keys(WidgetNames).map((i) => (
                                 <FormControlLabel
                                     control={
-                                        <Checkbox
-                                            checked={items.includes(i)}
-                                            onChange={handleChange}
-                                            name={i}
-                                        />
+                                        <MenuItem onClick={(e) => handleChange(i)}>
+                                            <AddCircleOutlineIcon />
+                                        </MenuItem>
                                     }
-                                    label={WidgetConfigJson.widgetNames[i]}
-                                    key={i}
+                                label={i}
+                                key={i}
                                 />
                             ))}
                         </FormGroup>
