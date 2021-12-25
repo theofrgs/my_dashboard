@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 //VIEW
-export function Widget({ widget, onRemoveItem }) {
+export default function Widget({ widget, onRemoveItem }) {
     const classes = useStyles();
     return (
         <Card className={classes.root}>
