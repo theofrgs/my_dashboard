@@ -3,7 +3,7 @@ import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
 import { WidgetConfig } from "../../WidgetConfig.js"
 import TopBar from "./TopBar";
-import { Widget } from "./Widget";
+import Widget from "./Widget";
 
 function getFromLS(key) {
     if (global.localStorage) {
