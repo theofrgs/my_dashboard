@@ -24,7 +24,7 @@ Click on the link in your console, once the deployement is finished to view it i
 
 ## Content
 
-The dashboard has 4 services with 6 widgets: Currency, weather, Nasa and Spotify.
+The dashboard has 4 services with 7 widgets: Currency, weather, Nasa and Spotify.
 
 Each widget is refreshed after a 30 seconds delay.
 
