@@ -13,7 +13,7 @@ function displayTrackInfos(tracks, item) {
     )
 }
 
-export default function topSpotify(spotifyTop) {
+export default function topSpotify(spotifyTop, timer) {
     if (!spotifyTop)
         return (null)
 
@@ -24,6 +24,7 @@ export default function topSpotify(spotifyTop) {
                 {spotifyTop.followers.total} followers
             </p1>
             <br />
+            <p1>Timer: {timer}</p1>
             {spotifyTop.tracks.items.map(track => (
                 <p1>{displayTrackInfos(spotifyTop.tracks.items, track)}</p1>
             ))}

@@ -5,7 +5,6 @@ function getPicture(callback, locations, mode) {
         `https://api.nasa.gov/planetary/apod?api_key=${env.NASA_API_KEY}`
     )
         .then((res) => {
-            console.log("CALL");
             if (res.ok) {
                 return res.json();
             } else {

@@ -3,8 +3,8 @@
         "initialLayouts": {
             "x": 0,
             "y": 0,
-            "w": 2,
-            "h": 5
+            "w": 3,
+            "h": 4
         }
     },
     "Converter Currency": {
@@ -12,7 +12,7 @@
             "x": 2,
             "y": 0,
             "w": 2,
-            "h": 7
+            "h": 5
         }
     },
     "5 Days Forecast Weather": {
@@ -27,16 +27,16 @@
         "initialLayouts": {
             "x": 8,
             "y": 0,
-            "w": 2,
-            "h": 4
+            "w": 4,
+            "h": 7
         }
     },
     "Spotify Last Release": {
         "initialLayouts": {
             "x": 4,
             "y": 4,
-            "w": 2,
-            "h": 4
+            "w": 3,
+            "h": 9
         }
     },
     "Spotify Top 50": {

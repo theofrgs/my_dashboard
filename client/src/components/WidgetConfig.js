@@ -1,11 +1,11 @@
-import WidgetJson from "./WidgetConfig.json"
-import Exchanges from "./views/Widgets/Exchanges";
-import ConverterCurrency from "./views/Widgets/ConverterCurrency";
-import CurrentWeatherWidget from "./views/Widgets/CurrentWeatherWidget"
-import ForecastWeatherWidget from "./views/Widgets/ForecastWeatherWidget"
-import NasaPOTD from "./views/Widgets/NasaPOTD";
-import SpotifyRelease from "./views/Widgets/SpotifyRelease"
-import SpotifyTop50 from "./views/Widgets/SpotifyTop50"
+import WidgetJson from "../WidgetConfig.json"
+import Exchanges from "../views/Widgets/Exchanges";
+import ConverterCurrency from "../views/Widgets/ConverterCurrency";
+import CurrentWeatherWidget from "../views/Widgets/CurrentWeatherWidget"
+import ForecastWeatherWidget from "../views/Widgets/ForecastWeatherWidget"
+import NasaPOTD from "../views/Widgets/NasaPOTD";
+import SpotifyRelease from "../views/Widgets/SpotifyRelease"
+import SpotifyTop50 from "../views/Widgets/SpotifyTop50"
 
 import { v4 as uuidv4 } from 'uuid';
 

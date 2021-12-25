@@ -79,7 +79,6 @@ function getTop(req, res) {
 
     Axios.get(`https://api.spotify.com/v1/playlists/${req.body.playlist_id}`, authOptions
     ).then(response => {
-        // console.log(response.data.tracks.items);
         res.send(response.data);
     }).catch(e => {
         if (e.response && e.response.data)

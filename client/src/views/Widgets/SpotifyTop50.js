@@ -78,8 +78,7 @@ export default function SpotifyTop50() {
         <div>
             {dropDownCountryMenuTop(anchorEl, setAnchorEl, setCountry)}
             {updateCountryName(country)}
-            {topSpotify(spotifyTop)}
-            <p1>Timer: {timer}</p1>
+            {topSpotify(spotifyTop, timer)}
         </div>
     )
 

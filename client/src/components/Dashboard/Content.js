@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import { withSize } from "react-sizeme";
-import { WidgetConfig } from "../../WidgetConfig.js"
+import { WidgetConfig } from "../WidgetConfig.js"
 import TopBar from "./TopBar";
 import Widget from "./Widget";
 
@@ -91,7 +91,12 @@ function Content({ size: { width } }) {
                         key={widget.id}
                         widget={widget.name}
                         className="widget"
-                        data-grid={{ w: 3, h: 2, x: 0, y: Infinity }}
+                        data-grid={{
+                            w: widget.layout.w,
+                            h: widget.layout.h,
+                            x: 0,
+                            y: Infinity
+                        }}
                     >
                         <Widget
                             widget={widget}
