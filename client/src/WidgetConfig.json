@@ -1,6 +1,5 @@
 {
-    "a": {
-        "name": "Exchanges",
+    "Exchanges": {
         "initialLayouts": {
             "x": 0,
             "y": 0,
@@ -8,8 +7,7 @@
             "h": 5
         }
     },
-    "b": {
-        "name": "ConverterCurrency",
+    "Converter Currency": {
         "initialLayouts": {
             "x": 2,
             "y": 0,
@@ -17,8 +15,7 @@
             "h": 7
         }
     },
-    "c": {
-        "name": "5 Days Forecast Weather",
+    "5 Days Forecast Weather": {
         "initialLayouts": {
             "x": 4,
             "y": 0,
@@ -26,8 +23,7 @@
             "h": 5
         }
     },
-    "d": {
-        "name": "Current Weather",
+    "Current Weather": {
         "initialLayouts": {
             "x": 8,
             "y": 0,
@@ -35,22 +31,20 @@
             "h": 4
         }
     },
-    "e": {
-        "name": "Spotify Last Release",
+    "Spotify Last Release": {
         "initialLayouts": {
-            "x": "4",
-            "y": "4",
-            "w": "2",
-            "h": "4"
+            "x": 4,
+            "y": 4,
+            "w": 2,
+            "h": 4
         }
     },
-    "f": {
-        "name": "Spotify Top 50",
+    "Spotify Top 50": {
         "initialLayouts": {
-            "x": "7",
-            "y": "3",
-            "w": "4",
-            "h": "4"
+            "x": 7,
+            "y": 3,
+            "w": 4,
+            "h": 4
         }
     }
 }
