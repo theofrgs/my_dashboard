@@ -1,38 +1,50 @@
 {
-    "a": {
-        "name": "Exchanges",
+    "Exchanges": {
         "initialLayouts": {
-            "x": "0",
-            "y": "0",
-            "w": "1",
-            "h": "4"
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 5
         }
     },
-    "b": {
-        "name": "ConverterCurrency",
+    "Converter Currency": {
         "initialLayouts": {
-            "x": "1",
-            "y": "0",
-            "w": "3",
-            "h": "4"
+            "x": 2,
+            "y": 0,
+            "w": 2,
+            "h": 7
         }
     },
-    "c": {
-        "name": "5 Days Forecast Weather",
+    "5 Days Forecast Weather": {
         "initialLayouts": {
-            "x": "4",
-            "y": "0",
-            "w": "1",
-            "h": "4"
+            "x": 4,
+            "y": 0,
+            "w": 4,
+            "h": 5
         }
     },
-    "d": {
-        "name": "Current Weather",
+    "Current Weather": {
         "initialLayouts": {
-            "x": "0",
-            "y": "4",
-            "w": "2",
-            "h": "4"
+            "x": 8,
+            "y": 0,
+            "w": 2,
+            "h": 4
+        }
+    },
+    "Spotify Last Release": {
+        "initialLayouts": {
+            "x": 4,
+            "y": 4,
+            "w": 2,
+            "h": 4
+        }
+    },
+    "Spotify Top 50": {
+        "initialLayouts": {
+            "x": 7,
+            "y": 3,
+            "w": 4,
+            "h": 4
         }
     },
     "e": {
