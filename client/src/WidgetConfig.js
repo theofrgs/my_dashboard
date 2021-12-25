@@ -51,7 +51,7 @@ function getinitialLayouts(widgetName, id) {
 
 function getComponentBack(widgets) {
     for (var p in widgets) {
-        widgets[p].component = WidgetConfigJson.getComponent(widgets[p].name)
+        widgets[p].component = getComponent(widgets[p].name)
     }
 }
 
@@ -72,7 +72,7 @@ function createWidget(widgetName) {
     return (newWidget);
 }
 
-export const WidgetConfigJson = {
+export const WidgetConfig = {
     WidgetNames: WidgetNames,
     ComponentList: ComponentList,
     Widget: Widget,

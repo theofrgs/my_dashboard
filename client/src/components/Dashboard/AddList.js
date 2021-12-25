@@ -8,7 +8,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import MenuItem from '@mui/material/MenuItem';
-import { WidgetConfigJson } from "../../WidgetConfig.js"
+import { WidgetConfig } from "../../WidgetConfig.js"
 
 const useStyles = makeStyles((theme) => ({
     popup: {
@@ -36,7 +36,7 @@ export default function AddList({
     };
 
     const handleChange = (i) => {
-        onAddItem(WidgetConfigJson.createWidget(i));
+        onAddItem(WidgetConfig.createWidget(i));
         handleClose();
     };
 

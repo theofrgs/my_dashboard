@@ -11,7 +11,7 @@ function getFromLS(key) {
             var value = JSON.parse(global.localStorage.getItem("rgl-8"))[key]
 
             if (key === "widgets")
-                getComponentBack(value)
+                WidgetConfig.getComponentBack(value)
             return (value)
         } catch (e) { }
     }
@@ -33,7 +33,7 @@ function saveToLS(key, value) {
 function saveWidgetLayout(widgets, layouts) {
 
     for (var p in widgets) {
-        let layout = getLayoutFromId(layouts, widgets[p].id)
+        let layout = WidgetConfig.getLayoutFromId(layouts, widgets[p].id)
 
         if (layout) {
             widgets[p].layout = layout
