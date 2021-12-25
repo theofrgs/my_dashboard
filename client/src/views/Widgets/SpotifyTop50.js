@@ -56,7 +56,7 @@ export default function SpotifyTop50() {
 
     useEffect(() => {
         if (timerState) {
-            if (timer === 5) {
+            if (timer === 30) {
                 setInteract(!interact);
                 setTimer(0);
             }

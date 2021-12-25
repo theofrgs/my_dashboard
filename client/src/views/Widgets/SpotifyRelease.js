@@ -48,7 +48,7 @@ export default function SpotifyRelease() {
 
     useEffect(() => {
         if (timerState) {
-            if (timer === 20) {
+            if (timer === 30) {
                 setInteract(!interact);
                 setTimer(0);
             }
