@@ -5,7 +5,6 @@ import { CssBaseline, ThemeProvider, createTheme } from "@material-ui/core";
 import { getUserSession } from "../../controller/session.js";
 import Content from "../../components/Dashboard/Content";
 import DashbpardStyle from "../../assets/jss/material-kit-react/components/dashboardStyle";
-import Header from "../../components/Dashboard/Header";
 import "../../styles.css";
 import StateRoute from "../../components/Auth/StateRoute.js";
 import Logout from "../../components/Auth/Logout.js";
@@ -59,18 +58,15 @@ export default function DashboardPage(req, res) {
             <ThemeProvider theme={theme}>
                 <div className={classes.root}>
                     <CssBaseline />
-                    <Header
-                        user={user}
-                        toggleDarkMode={toggleDarkMode}
-                        darkMode={darkMode}
-                    />
                     <main
                         className={clsx(classes.content, {
                             [classes.contentShift]: open
                         })}
                     >
-                        <div className={classes.drawerHeader} />
-                        <Content />
+                        <Content
+                            toggleDarkMode={toggleDarkMode}
+                            darkMode={darkMode}
+                        />
                     </main>
                 </div>
             </ThemeProvider>

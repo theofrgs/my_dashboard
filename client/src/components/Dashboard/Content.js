@@ -50,7 +50,10 @@ function getWidgetsLayouts(widgets) {
     return layouts
 }
 
-function Content({ size: { width } }) {
+function Content({ size: { width },
+    toggleDarkMode,
+    darkMode,
+}) {
 
     const [widgets, setWidgets] = useState(getFromLS("widgets") || [])
     const [layouts, setLayouts] = useState(getFromLS("layouts") || {});
@@ -76,6 +79,8 @@ function Content({ size: { width } }) {
                 onLayoutSave={onLayoutSave}
                 onAddItem={onAddItem}
                 WidgetNames={WidgetConfig.WidgetNames}
+                toggleDarkMode={toggleDarkMode}
+                darkMode={darkMode}
             />
             <ResponsiveGridLayout
                 className="layout"
