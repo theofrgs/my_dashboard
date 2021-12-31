@@ -1,3 +1,6 @@
 {
-  "exchanges": "exchangeskey"
+    "exchanges": "exchanges",
+    "spotifyClientId": "spotifyClientId",
+    "spotifyClientKey": "spotifyClientKey",
+    "spotifyRedirectUri": "spotifyRedirectUri"
 }
